@@ -2,6 +2,8 @@ package com.ninechapters.systemdesign.consistentHashing;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map.Entry;
+import java.util.TreeMap;
 
 public class Solution {
 
@@ -12,16 +14,16 @@ public class Solution {
 
 	public List<List<Integer>> consistentHashing(int n) {
 		// Write your code here
+		
+		
+		
+		
 		return null;
 	}
 
 	public int[][] splitInt(int start, int end, int serverNu1, int serverNu2) {
 		int[][] rt = new int[2][3];
-		// int count=0;
-		// for(int i=0; i<=end;i++){
-		// count++;
-		// }
-		// System.out.println("count "+count);
+	
 		int split = (start + end) / 2;
 		rt[0][0] = start;
 		rt[0][1] = split;
@@ -40,21 +42,17 @@ public class Solution {
 	public int[] getMinIntArray(int[][] intArray) {
 		int[] rt = {0,0};
         int rtValue = 0;
-		for (int i = 0; i < intArray.length; i++) {
-			int temp = i;
-			
-			int min1 = intArray[i][1] - intArray[i][0];
-			int min2 = intArray[i++][1] - intArray[i++][0];
-			if (min1 <= min2&&rtValue>min1) {
-				rt = intArray[temp];
-				rtValue=min1;
-			} else if(rtValue>min2) {
-				rt = intArray[temp + 1];
-				rtValue=min2;
-			}else{
-			   System.out.println("Keep value");
+        
+        TreeMap<Integer,int[]> map = new TreeMap<Integer, int[]>();
+        
+		for (int i = 0; i < intArray.length; i++) {			
+			int max1 = intArray[i][1] - intArray[i][0];
+			if(!map.containsKey(max1)){
+			    map.put(max1, intArray[i]);		
 			}
 		}
+		Entry entry = map.lastEntry();
+		rt = (int[]) entry.getValue();
 		System.out.println(Arrays.toString(rt));
 		return rt;
 	}
