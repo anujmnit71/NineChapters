@@ -3,6 +3,7 @@ package com.ninechapters.systemdesign.consistentHashing;
 import static org.junit.Assert.*;
 
 import java.util.Arrays;
+import java.util.List;
 
 import org.junit.After;
 import org.junit.Before;
@@ -44,6 +45,29 @@ public class SolutionTest {
 		int[][] testValue = {{0, 89, 1},{180, 359, 2},{90, 179, 3}}; 
 	  int[] rt = 	s.getMinIntArray(testValue);
 	  System.out.println(Arrays.toString(rt));
+	}
+	
+	@Test
+	public void testConsistentHashing(){
+		List<List<Integer>> list = s.consistentHashing(1);
+		System.out.println("r ="+Arrays.toString(list.toArray()));
+		list =s.consistentHashing(2);
+		System.out.println("r ="+Arrays.toString(list.toArray()));
+
+		list =s.consistentHashing(3);
+		System.out.println("r ="+Arrays.toString(list.toArray()));
+
+		list =s.consistentHashing(4);
+		System.out.println("r ="+Arrays.toString(list.toArray()));
+
+		list = s.consistentHashing(5);
+		System.out.println("r ="+Arrays.toString(list.toArray()));
+
+		/**
+		 *5 -  [[0, 44, 1], [180, 269, 2], [90, 179, 3], [270, 359, 4], [45, 89, 5]]
+          6 -  [[0, 44, 1], [180, 224, 2], [90, 179, 3], [270, 359, 4], [45, 89, 5], [225, 269, 6]]
+		 */
+		
 	}
 	
 
